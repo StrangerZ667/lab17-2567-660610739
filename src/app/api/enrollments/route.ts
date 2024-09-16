@@ -69,7 +69,9 @@ export const GET = async (request:NextRequest) => {
     const students:Student[] = [];
     for (const studentId of studentIdList) {
       const student = DB.students.find((x) => x.studentId === studentId);
-      students.push(student);
+      if (student) {
+        students.push(student);
+      }
     }
 
     return NextResponse.json({
